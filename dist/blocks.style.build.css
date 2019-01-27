@@ -169,3 +169,23 @@
   color: #1b1e21;
   background-color: #d6d8d9;
   border-color: #c6c8ca; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+/**
+ * #.# Styles
+ *
+ * CSS for both Frontend+Backend.
+ */
+.lwhh-figure {
+  margin: 0;
+  padding: 10px;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  display: inline-block; }
+
+.lwhh-figure__image {
+  display: block; }
