@@ -56,10 +56,21 @@ registerBlockType('lwhh/image', {
 		},
 		src: {
 			type: 'string',
+			source: 'attribute', //source type
+			selector: '.lwhh-figure__image', //dom selector
+			attribute: 'src', //html attribute name
 		},
 		alt: {
-			type: 'string'
+			type: 'string',
+			source: 'attribute', //source type
+			selector: '.lwhh-figure__image', //dom selector
+			attribute: 'alt', //html attribute name
 		}
+	},
+
+	supports: {
+		align: true,
+		alignWide: false
 	},
 
 	/**
@@ -73,7 +84,7 @@ registerBlockType('lwhh/image', {
 	edit({ className, attributes, setAttributes }) {
 		const { id, src, alt } = attributes;
 		return (
-			<figure className={`lwhh-figure ${className}`}>
+			<figure className={`lwhh-figure ${className}`} >
 				{src && <img className='lwhh-figure__image' src={src} alt={alt} />}
 				<MediaUploadCheck>
 					<MediaUpload
@@ -97,7 +108,7 @@ registerBlockType('lwhh/image', {
 						)}
 					/>
 				</MediaUploadCheck>
-			</figure>
+			</figure >
 		)
 	},
 

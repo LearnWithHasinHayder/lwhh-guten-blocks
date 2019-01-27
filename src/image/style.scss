@@ -10,12 +10,12 @@
   border-radius: 5px;
   display: inline-block;
 
-  // .entry .entry-content > &.aligncenter {
-  //   max-width: 150px;
-  //   display: block;
-  //   margin-left: auto;
-  //   margin-right: auto;
-  // }
+  .entry .entry-content > &.aligncenter {
+    max-width: 150px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 .lwhh-figure__image {
