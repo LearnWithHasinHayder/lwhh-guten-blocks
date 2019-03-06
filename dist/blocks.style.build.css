@@ -194,3 +194,151 @@
 
 .lwhh-figure__image {
   display: block; }
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.lwhh-card,
+.lwhh-card * {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box; }
+
+.lwhh-text--left {
+  text-align: left; }
+
+.lwhh-text--center {
+  text-align: center; }
+
+.lwhh-text--right {
+  text-align: right; }
+
+.lwhh-card {
+  position: relative;
+  word-wrap: break-word;
+  background-color: #f1f1f1;
+  background-clip: border-box;
+  border-radius: .5rem; }
+  .lwhh-card-figure {
+    position: relative; }
+    .lwhh-card-figure img {
+      width: 100%;
+      border-top-left-radius: calc(.5rem - 1px);
+      border-top-right-radius: calc(.5rem - 1px);
+      -o-object-fit: cover;
+         object-fit: cover;
+      vertical-align: bottom; }
+  .lwhh-card--figure-left, .lwhh-card--figure-right {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: row;
+        flex-direction: row;
+    -ms-flex-align: center;
+        align-items: center; }
+    .lwhh-card--figure-left .lwhh-card-figure, .lwhh-card--figure-right .lwhh-card-figure {
+      margin-bottom: auto;
+      -ms-flex-item-align: start;
+          align-self: flex-start;
+      width: 50%;
+      height: 100%; }
+      .lwhh-card--figure-left .lwhh-card-figure img, .lwhh-card--figure-right .lwhh-card-figure img {
+        border-radius: calc(.5rem - 1px) 0 0 calc(.5rem - 1px);
+        height: 100%;
+        vertical-align: bottom; }
+    .lwhh-card--figure-left .lwhh-card-body, .lwhh-card--figure-right .lwhh-card-body {
+      width: 50%;
+      padding: 2.5rem; }
+  .lwhh-card--figure-right {
+    -ms-flex-direction: row-reverse;
+        flex-direction: row-reverse; }
+    .lwhh-card--figure-right .lwhh-card-figure img {
+      border-radius: 0 calc(.5rem - 1px) calc(.5rem - 1px) 0; }
+
+.lwhh-label {
+  background-color: #fff;
+  padding: .475rem 1.1rem;
+  border-radius: 50px;
+  position: absolute;
+  font-size: 14px;
+  font-weight: bold; }
+  .lwhh-label--top-left {
+    left: 1rem;
+    top: 1rem; }
+  .lwhh-label--top-center {
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+            transform: translateX(-50%);
+    top: 1rem; }
+  .lwhh-label--top-right {
+    right: 1rem;
+    top: 1rem; }
+  .lwhh-label--middle-left {
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+    left: 1rem; }
+  .lwhh-label--middle-center {
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%); }
+  .lwhh-label--middle-right {
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+    right: 1rem; }
+  .lwhh-label--bottom-left {
+    left: 1rem;
+    bottom: 1rem; }
+  .lwhh-label--bottom-center {
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+            transform: translateX(-50%);
+    bottom: 1rem; }
+  .lwhh-label--bottom-right {
+    right: 1rem;
+    bottom: 1rem; }
+
+.lwhh-card-body {
+  padding: 1.5rem; }
+
+.lwhh-card-title {
+  margin-top: 0;
+  margin-bottom: .75rem;
+  color: #151515;
+  font-size: 24px; }
+  .lwhh-card-title:before {
+    content: ""; }
+
+.lwhh-card-text {
+  margin-bottom: 2rem;
+  color: #616161;
+  font-size: 16px;
+  line-height: 1.7; }
+  .lwhh-card-text > p {
+    margin-top: 0;
+    margin-bottom: 0; }
+
+.lwhh-card-btn {
+  background-color: #8c8c8c;
+  color: #fff;
+  text-decoration: none;
+  padding: .575rem 1.3rem;
+  line-height: 1.5;
+  border-radius: .25rem;
+  text-align: center;
+  vertical-align: middle;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: bold;
+  -webkit-transition: all .3s;
+  -o-transition: all .3s;
+  transition: all .3s; }
+  .lwhh-card-btn:hover, .lwhh-card-btn:focus {
+    background-color: #242424; }
