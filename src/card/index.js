@@ -12,15 +12,7 @@ const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
 const {
 	RichText,
-	URLInput,
-	InspectorControls,
 } = wp.editor;
-const {
-	Dashicon,
-	IconButton,
-	PanelBody,
-	SelectControl
-} = wp.components;
 
 /**
  * Register: aa Gutenberg Block.
@@ -58,17 +50,6 @@ registerBlockType('lwhh/card', {
 		btn_text: {
 			type: 'string'
 		},
-		btn_url: {
-			type: 'string'
-		},
-		label_position: {
-			type: 'string',
-			default: 'top-right'
-		},
-		image_position: {
-			type: 'string',
-			default: 'top'
-		}
 	},
 
 	/**
@@ -79,66 +60,25 @@ registerBlockType('lwhh/card', {
 	 *
 	 * @link https://wordpress.org/gutenberg/handbook/block-api/block-edit-save/
 	 */
-	edit({ attributes, setAttributes, isSelected }) {
+	edit({ attributes, setAttributes }) {
 		const {
 			title,
 			content,
 			label,
 			btn_text,
-			btn_url,
-			label_position,
-			image_position
 		} = attributes;
 
 		return (
-			<div className={`lwhh-card lwhh-card--figure-${image_position}`}>
-				<InspectorControls>
-					<PanelBody
-						title={__('Card')}
-						initialOpen={true}
-					>
-						<SelectControl
-							style={{ width: '100%' }}
-							label={__('Image Position')}
-							value={image_position}
-							onChange={(position) => setAttributes({ image_position: position })}
-							options={[
-								{ value: 'left', label: 'Left' },
-								{ value: 'top', label: 'Top' },
-								{ value: 'right', label: 'Right' },
-							]}
-						/>
-					</PanelBody>
-					<PanelBody
-						title={__('Label')}
-					>
-						<SelectControl
-							label={__('Label Position')}
-							value={label_position}
-							onChange={(position) => setAttributes({ label_position: position })}
-							options={[
-								{ value: 'bottom-left', label: 'Bottom Left' },
-								{ value: 'bottom-center', label: 'Bottom Center' },
-								{ value: 'bottom-right', label: 'Bottom Right' },
-								{ value: 'middle-left', label: 'Middle Left' },
-								{ value: 'middle-center', label: 'Middle Center' },
-								{ value: 'middle-right', label: 'Middle Right' },
-								{ value: 'top-left', label: 'Top Left' },
-								{ value: 'top-center', label: 'Top Center' },
-								{ value: 'top-right', label: 'Top Right' },
-							]}
-						/>
-					</PanelBody>
-				</InspectorControls>
+			<div className="lwhh-card">
 				<div className="lwhh-card-figure">
 					<img src="https://via.placeholder.com/400x400?text=LWHH Gutenberg Course" alt="..." />
-					<div className={`lwhh-label lwhh-label--${label_position}`}>
+					<div className="lwhh-label lwhh-label--top-right">
 						<RichText
 							value={label}
 							multiline={false}
 							placeholder={__('Add text...')}
 							onChange={(label) => setAttributes({ label })}
-							keepPlaceholderOnFocus={true}
+							keepPlaceholderOnFocus
 						/>
 					</div>
 				</div>
@@ -149,7 +89,7 @@ registerBlockType('lwhh/card', {
 							multiline={false}
 							placeholder={__('Add title text...')}
 							onChange={(title) => setAttributes({ title })}
-							keepPlaceholderOnFocus={true}
+							keepPlaceholderOnFocus
 						/>
 					</h2>
 					<div className="lwhh-card-text">
@@ -159,7 +99,7 @@ registerBlockType('lwhh/card', {
 								multiline={false}
 								placeholder={__('Add your card content')}
 								onChange={(content) => setAttributes({ content })}
-								keepPlaceholderOnFocus={true}
+								keepPlaceholderOnFocus
 							/>
 						</p>
 					</div>
@@ -169,22 +109,9 @@ registerBlockType('lwhh/card', {
 							multiline={false}
 							placeholder={__('Button text...')}
 							onChange={(btn_text) => setAttributes({ btn_text })}
-							keepPlaceholderOnFocus={true}
+							keepPlaceholderOnFocus
 						/>
 					</div>
-					{isSelected && (
-						<form
-							className="block-library-button__inline-link"
-							onSubmit={(event) => event.preventDefault()}>
-							<Dashicon icon="admin-links" />
-							<URLInput
-								autoFocus={false}
-								value={btn_url}
-								onChange={(url) => setAttributes({ btn_url: url })}
-							/>
-							<IconButton icon="editor-break" label={__('Apply')} type="submit" />
-						</form>
-					)}
 				</div>
 			</ div >
 		);
