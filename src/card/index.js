@@ -12,7 +12,14 @@ const { __ } = wp.i18n; // Import __() from wp.i18n
 const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.blocks
 const {
 	RichText,
+	InspectorControls,
+	InnerBlocks
 } = wp.editor;
+
+const {
+	PanelBody,
+	SelectControl,
+} = wp.components;
 
 /**
  * Register: aa Gutenberg Block.
@@ -50,6 +57,14 @@ registerBlockType('lwhh/card', {
 		btn_text: {
 			type: 'string'
 		},
+		label_position: {
+			type: 'string',
+			default: 'top-right'
+		},
+		image_position: {
+			type: 'string',
+			default: 'top'
+		}
 	},
 
 	/**
@@ -66,13 +81,52 @@ registerBlockType('lwhh/card', {
 			content,
 			label,
 			btn_text,
+			label_position,
+			image_position
 		} = attributes;
 
 		return (
-			<div className="lwhh-card">
+			<div className={`lwhh-card lwhh-card--figure-${image_position}`}>
+				<InspectorControls>
+					<PanelBody
+						title={__('Image')}
+						initialOpen={true}
+					>
+						<SelectControl
+							label={__('Image Position')}
+							value={image_position}
+							onChange={(position) => setAttributes({ image_position: position })}
+							options={[
+								{ value: 'top', label: __('Image On Top') },
+								{ value: 'left', label: __('Image On Left') },
+								{ value: 'right', label: __('Image On Right') },
+							]}
+						/>
+					</PanelBody>
+					<PanelBody
+						title={__('Label')}
+					>
+						<SelectControl
+							label={__('Label Position')}
+							value={label_position}
+							onChange={(position) => setAttributes({ label_position: position })}
+							options={[
+								{ value: 'top-left', label: 'Top Left' },
+								{ value: 'top-center', label: 'Top Center' },
+								{ value: 'top-right', label: 'Top Right' },
+								{ value: 'middle-left', label: 'Middle Left' },
+								{ value: 'middle-center', label: 'Middle Center' },
+								{ value: 'middle-right', label: 'Middle Right' },
+								{ value: 'bottom-left', label: 'Bottom Left' },
+								{ value: 'bottom-center', label: 'Bottom Center' },
+								{ value: 'bottom-right', label: 'Bottom Right' },
+							]}
+						/>
+					</PanelBody>
+				</InspectorControls>
 				<div className="lwhh-card-figure">
 					<img src="https://via.placeholder.com/400x400?text=LWHH Gutenberg Course" alt="..." />
-					<div className="lwhh-label lwhh-label--top-right">
+					<div className={`lwhh-label lwhh-label--${label_position}`}>
 						<RichText
 							value={label}
 							multiline={false}
