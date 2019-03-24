@@ -45,7 +45,6 @@ registerBlockType('lwhh/card', {
 		__('LWHH'),
 		__('Card'),
 	],
-
 	attributes: {
 		title: {
 			type: 'string'
@@ -139,7 +138,17 @@ registerBlockType('lwhh/card', {
 					</div>
 				</div>
 				<div className="lwhh-card-body">
-					<InnerBlocks allowedBlocks={ALLOWED_BLOCKS} />
+					<InnerBlocks
+						allowedBlocks={ALLOWED_BLOCKS}
+						template={
+							[
+								['core/heading', { placeholder: 'Type card heading' }],
+								['core/paragraph', { placeholder: 'Type card description' }],
+								['core/button']
+							]
+						}
+						templateLock='all'
+					/>
 				</div>
 			</ div >
 		);
