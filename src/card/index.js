@@ -21,6 +21,8 @@ const {
 	SelectControl,
 } = wp.components;
 
+const ALLOWED_BLOCKS = ['core/heading', 'core/paragraph', 'core/button'];
+
 /**
  * Register: aa Gutenberg Block.
  *
@@ -137,35 +139,7 @@ registerBlockType('lwhh/card', {
 					</div>
 				</div>
 				<div className="lwhh-card-body">
-					<h2 className="lwhh-card-title">
-						<RichText
-							value={title}
-							multiline={false}
-							placeholder={__('Add title text...')}
-							onChange={(title) => setAttributes({ title })}
-							keepPlaceholderOnFocus
-						/>
-					</h2>
-					<div className="lwhh-card-text">
-						<p>
-							<RichText
-								value={content}
-								multiline={false}
-								placeholder={__('Add your card content')}
-								onChange={(content) => setAttributes({ content })}
-								keepPlaceholderOnFocus
-							/>
-						</p>
-					</div>
-					<div className="lwhh-card-btn">
-						<RichText
-							value={btn_text}
-							multiline={false}
-							placeholder={__('Button text...')}
-							onChange={(btn_text) => setAttributes({ btn_text })}
-							keepPlaceholderOnFocus
-						/>
-					</div>
+					<InnerBlocks allowedBlocks={ALLOWED_BLOCKS} />
 				</div>
 			</ div >
 		);
