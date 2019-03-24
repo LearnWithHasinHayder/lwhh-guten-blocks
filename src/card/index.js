@@ -13,12 +13,15 @@ const { registerBlockType } = wp.blocks; // Import registerBlockType() from wp.b
 const {
 	RichText,
 	InspectorControls,
-	InnerBlocks
+	InnerBlocks,
+	MediaUpload,
+	MediaUploadCheck
 } = wp.editor;
 
 const {
 	PanelBody,
 	SelectControl,
+	IconButton
 } = wp.components;
 
 const ALLOWED_BLOCKS = ['core/heading', 'core/paragraph', 'core/button'];
@@ -65,6 +68,15 @@ registerBlockType('lwhh/card', {
 		image_position: {
 			type: 'string',
 			default: 'top'
+		},
+		img_src: {
+			type: 'string'
+		},
+		img_id: {
+			type: 'integer'
+		},
+		img_alt: {
+			type: 'string'
 		}
 	},
 
@@ -83,7 +95,10 @@ registerBlockType('lwhh/card', {
 			label,
 			btn_text,
 			label_position,
-			image_position
+			image_position,
+			img_src,
+			img_alt,
+			img_id
 		} = attributes;
 
 		return (
@@ -126,7 +141,29 @@ registerBlockType('lwhh/card', {
 					</PanelBody>
 				</InspectorControls>
 				<div className="lwhh-card-figure">
-					<img src="https://via.placeholder.com/400x400?text=LWHH Gutenberg Course" alt="..." />
+					{img_src && <img src={img_src} alt={img_alt} />}
+					<MediaUploadCheck>
+						<MediaUpload
+							onSelect={(image) => {
+								setAttributes({
+									img_id: image.id,
+									img_alt: image.title,
+									img_src: (image.sizes.large && image.sizes.large.url) || image.url
+								})
+							}}
+							multiple={false}
+							allowedTypes={['image']}
+							value={img_id}
+							render={({ open }) => (
+								<IconButton
+									className='lwhh-card-figure-btn'
+									onClick={open}
+									icon={(img_id || img_src) ? 'update' : 'format-image'}
+									label={(img_id || img_src) ? __('Update image') : __('Add image')}
+								/>
+							)}
+						/>
+					</MediaUploadCheck>
 					<div className={`lwhh-label lwhh-label--${label_position}`}>
 						<RichText
 							value={label}

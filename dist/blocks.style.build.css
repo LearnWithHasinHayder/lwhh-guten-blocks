@@ -233,15 +233,9 @@
     display: -ms-flexbox;
     display: flex;
     -ms-flex-direction: row;
-        flex-direction: row;
-    -ms-flex-align: center;
-        align-items: center; }
+        flex-direction: row; }
     .lwhh-card--figure-left .lwhh-card-figure, .lwhh-card--figure-right .lwhh-card-figure {
-      margin-bottom: auto;
-      -ms-flex-item-align: start;
-          align-self: flex-start;
-      width: 50%;
-      height: 100%; }
+      width: 50%; }
       .lwhh-card--figure-left .lwhh-card-figure img, .lwhh-card--figure-right .lwhh-card-figure img {
         border-radius: calc(.5rem - 1px) 0 0 calc(.5rem - 1px);
         height: 100%;
@@ -342,3 +336,11 @@
   transition: all .3s; }
   .lwhh-card-btn:hover, .lwhh-card-btn:focus {
     background-color: #242424; }
+
+.lwhh-card-figure-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%); }
