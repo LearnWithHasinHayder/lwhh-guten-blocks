@@ -85,7 +85,7 @@ registerBlockType('lwhh/image', {
 		const { id, src, alt } = attributes;
 		return (
 			<figure className={`lwhh-figure ${className}`} >
-				{src && <img className='lwhh-figure__image' src={src} alt={alt} />}
+				{src && <img className='lwhh-card-figure' src={src} alt={alt} />}
 				<MediaUploadCheck>
 					<MediaUpload
 						onSelect={(image) => {

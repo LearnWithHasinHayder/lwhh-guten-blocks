@@ -37,18 +37,9 @@
   &--figure-right {
     display: flex;
     flex-direction: row;
-    align-items: center;
-
-    // .lwhh-card-figure,
-    // .lwhh-card-body {
-    //   flex: 1;
-    // }
 
     .lwhh-card-figure {
-      margin-bottom: auto;
-      align-self: flex-start;
       width: 50%;
-      height: 100%;
 
       img {
         border-radius: calc(.5rem - 1px) 0 0 calc(.5rem - 1px);
@@ -178,4 +169,11 @@
       background-color: #242424;
     }
   }
+}
+
+.lwhh-card-figure-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
