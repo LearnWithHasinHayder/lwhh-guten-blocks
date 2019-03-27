@@ -219,13 +219,15 @@
   word-wrap: break-word;
   background-color: #f1f1f1;
   background-clip: border-box;
-  border-radius: .5rem; }
+  border-radius: .5rem;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  overflow: hidden; }
   .lwhh-card-figure {
-    position: relative; }
+    position: relative;
+    min-height: 250px; }
     .lwhh-card-figure img {
       width: 100%;
-      border-top-left-radius: calc(.5rem - 1px);
-      border-top-right-radius: calc(.5rem - 1px);
       -o-object-fit: cover;
          object-fit: cover;
       vertical-align: bottom; }
@@ -237,7 +239,6 @@
     .lwhh-card--figure-left .lwhh-card-figure, .lwhh-card--figure-right .lwhh-card-figure {
       width: 50%; }
       .lwhh-card--figure-left .lwhh-card-figure img, .lwhh-card--figure-right .lwhh-card-figure img {
-        border-radius: calc(.5rem - 1px) 0 0 calc(.5rem - 1px);
         height: 100%;
         vertical-align: bottom; }
     .lwhh-card--figure-left .lwhh-card-body, .lwhh-card--figure-right .lwhh-card-body {
@@ -246,8 +247,6 @@
   .lwhh-card--figure-right {
     -ms-flex-direction: row-reverse;
         flex-direction: row-reverse; }
-    .lwhh-card--figure-right .lwhh-card-figure img {
-      border-radius: 0 calc(.5rem - 1px) calc(.5rem - 1px) 0; }
 
 .lwhh-label {
   background-color: #fff;

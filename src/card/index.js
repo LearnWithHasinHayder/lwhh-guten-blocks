@@ -21,7 +21,8 @@ const {
 const {
 	PanelBody,
 	SelectControl,
-	IconButton
+	IconButton,
+	RangeControl
 } = wp.components;
 
 const ALLOWED_BLOCKS = ['core/heading', 'core/paragraph', 'core/button'];
@@ -49,17 +50,10 @@ registerBlockType('lwhh/card', {
 		__('Card'),
 	],
 	attributes: {
-		title: {
-			type: 'string'
-		},
-		content: {
-			type: 'string'
-		},
 		label: {
-			type: 'string'
-		},
-		btn_text: {
-			type: 'string'
+			type: 'string',
+			source: 'text',
+			selector: '.lwhh-label'
 		},
 		label_position: {
 			type: 'string',
@@ -70,13 +64,22 @@ registerBlockType('lwhh/card', {
 			default: 'top'
 		},
 		img_src: {
-			type: 'string'
+			type: 'string',
+			source: 'attribute',
+			selector: 'img',
+			attribute: 'src'
+		},
+		img_alt: {
+			type: 'string',
+			source: 'attribute',
+			selector: 'img',
+			attribute: 'alt'
 		},
 		img_id: {
 			type: 'integer'
 		},
-		img_alt: {
-			type: 'string'
+		border_radius: {
+			type: 'integer'
 		}
 	},
 
@@ -90,23 +93,33 @@ registerBlockType('lwhh/card', {
 	 */
 	edit({ attributes, setAttributes }) {
 		const {
-			title,
-			content,
 			label,
-			btn_text,
 			label_position,
 			image_position,
-			img_src,
 			img_alt,
-			img_id
+			img_src,
+			img_id,
+			border_radius
 		} = attributes;
 
 		return (
-			<div className={`lwhh-card lwhh-card--figure-${image_position}`}>
+			<div style={{ borderRadius: border_radius + 'px' }} className={`lwhh-card lwhh-card--figure-${image_position}`}>
 				<InspectorControls>
 					<PanelBody
-						title={__('Image')}
+						title={__('Card')}
 						initialOpen={true}
+					>
+						<RangeControl
+							label={__('Border Radius')}
+							value={border_radius}
+							onChange={(border_radius) => setAttributes({ border_radius })}
+							min={0}
+							max={50}
+						/>
+					</PanelBody>
+					<PanelBody
+						title={__('Image')}
+						initialOpen={false}
 					>
 						<SelectControl
 							label={__('Image Position')}
@@ -199,6 +212,26 @@ registerBlockType('lwhh/card', {
 	 *
 	 * @link https://wordpress.org/gutenberg/handbook/block-api/block-edit-save/
 	 */
-	save() {
+	save({ attributes }) {
+		const {
+			label,
+			label_position,
+			image_position,
+			img_alt,
+			img_src,
+			border_radius
+		} = attributes;
+
+		return (
+			<div style={{ borderRadius: border_radius + 'px' }} className={`lwhh-card lwhh-card--figure-${image_position}`}>
+				<div className="lwhh-card-figure">
+					<img src={img_src} alt={img_alt} />
+					<div className={`lwhh-label lwhh-label--${label_position}`}>{label}</div>
+				</div>
+				<div className='lwhh-card-body'>
+					<InnerBlocks.Content />
+				</div>
+			</div>
+		);
 	},
 });

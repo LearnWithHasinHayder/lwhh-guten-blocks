@@ -21,13 +21,16 @@
   background-color: #f1f1f1;
   background-clip: border-box;
   border-radius: .5rem;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  overflow: hidden;
 
   &-figure {
     position: relative;
+    min-height: 250px;
+
     img {
       width: 100%;
-      border-top-left-radius: calc(.5rem - 1px);
-      border-top-right-radius: calc(.5rem - 1px);
       object-fit: cover;
       vertical-align: bottom;
     }
@@ -42,7 +45,6 @@
       width: 50%;
 
       img {
-        border-radius: calc(.5rem - 1px) 0 0 calc(.5rem - 1px);
         height: 100%;
         vertical-align: bottom;
       }
@@ -55,11 +57,6 @@
 
   &--figure-right {
     flex-direction: row-reverse;
-    .lwhh-card-figure {
-      img {
-        border-radius: 0 calc(.5rem - 1px) calc(.5rem - 1px) 0;
-      }
-    }
   }
 }
 
